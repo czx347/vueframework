@@ -1,0 +1,89 @@
+@import "../css/normalize.css";
+
+@mixin fz($font-size) {
+  font-size: $font-size;
+  [data-dpr="2"] & {
+    font-size: $font-size * 2;
+  }
+  [data-dpr="3"] & {
+    font-size: $font-size * 3;
+  }
+}
+@mixin dpr-img($url,$name,$type:".jpg"){
+  background-image: url($url +"2x/"+ $name + "@2x" + $type);
+  [data-dpr="3"] &{
+    background-image: url($url +"3x/"+ $name + "@3x" + $type);
+  }
+}
+
+
+
+@mixin table-center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+@mixin poa-center($w, $h) {
+  position: absolute;
+  width: $w;
+  height: $h;
+  left: 50%;
+  top: 50%;
+  // margin-left:-($w/2);
+  // margin-top:-($h/2);
+  transition: translate(-50%, -50%)
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin t-overflow($line:1) {
+  @if $line==1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@function torem($px) {
+  @return $px / 75px * 1rem;
+}
+
+
+@fontFamily: Roboto, Lato, sans-serif;  // 字体
+// 主色和强调色
+@primaryColor: #ce3d3e;           // 主色
+@darkerPrimaryColor: #ce3d3e;  // 更深的主色
+@lighterPrimaryColor: @grey400;      // 浅一点的主色
+@accentColor: #ce3d3e;             // 强调色
+@darkerAccentColor: @grey100;        // 更深的强调色
+@lighterAccentColor: @grey500;       // 浅一点的强调色
+
+// 文本颜色
+@textColor: @darkBlack;
+@secondaryTextColor: fade(@fullBlack, 54%);
+@alternateTextColor: @white;
+@borderColor: fade(@fullBlack, 12%);
+@disabledColor: fade(@fullBlack, 38%);
+
+// background
+@backgroundColor: @white;           // 背景色
+@statusBarBackgroundColor: @grey300; // web项目没有状态栏，所以也没有使用
+@appbarBackgroundColor: @grey100; // 并未在appbar组件中应用
+@dialogBackgroundColor: @white; // dialogs、 cards、 paper 组件背景
+
+// icon color
+@activeIconColor: fade(@fullBlack, 54%);
+@inActiveIconColor: fade(@fullBlack, 38%);
+
